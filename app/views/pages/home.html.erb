@@ -1,0 +1,12 @@
+<h1>Hello !</h1>
+<p>Ceci est ma première variable ruby : <%= @variable %>.</p>
+
+<% if @variable == 2 %>
+  <p>Super, la variable vaut 2 !</p>
+<% else %>
+  <p>Mince, la variable ne vaut pas 2 !</p>
+<% end %>
+
+<% @variable.times do |i| %>
+  <%= i %>
+<% end %>
