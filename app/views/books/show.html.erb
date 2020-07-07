@@ -1,10 +1,32 @@
 <h1>Affichage d'un livre</h1>
 
-<p><%= @le_livre.title %></p>
+<p><%= @le_livre.title_was %></p>
 
 <%= form_tag "/books/#{@le_livre.id}", method: "patch" do %>
 <input type="text" name="title">
+<%= @le_livre.errors[:title].first %>
 <input type="submit" value="Modifier le livre">
 <% end %>
 
-<a href="/books">Revenir à la liste des livres</a>
+<p>
+<%= form_tag "/books/#{@le_livre.id}", method: "delete" do %>
+<input type="submit" value="Supprimer le livre">
+<% end %>
+</p>
+
+<p>Ajouter un commentaire à ce livre :</p>
+<p>
+<%= form_tag "/books/#{@le_livre.id}", method: "post" do %>
+<input type="text" name="author" placeholder="Name">
+<input type="text" name="content" placeholder="Comment">
+<input type="submit" value="Ajouter un commentaire au livre">
+<% end %>
+</p>
+
+<p>Commentaires :</p>
+<p><% @le_livre.comments.each do |comment| %>
+    <p><%= comment.author %> :
+    <%= comment.content %></p>
+    <% end %>
+
+<p><a href="/books">Revenir à la liste des livres</a></p>

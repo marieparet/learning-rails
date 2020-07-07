@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_132922) do
+ActiveRecord::Schema.define(version: 2020_07_06_143402) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_books_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "author"
+    t.string "content"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_comments_on_book_id"
   end
 
 end
